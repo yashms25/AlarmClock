@@ -1,7 +1,10 @@
 
+
 const ans = document.getElementById('ans');
 const date = document.getElementById('alarm');
 const setalarm = document.getElementById('setalarm');
+const reset = document.getElementById('reset');
+
 date.addEventListener('input', ()=>{
     console.log("alarm is blurred");
     let regex = /^([0-9]){4}-([0-9]){2}-([0-9]){2}\s([0-9]){2}:([0-9]){2}:([0-9]){2}$/;
@@ -19,13 +22,21 @@ date.addEventListener('input', ()=>{
 setalarm.addEventListener('click',setAlarm);
 var audio = new Audio('krishna flute.mp3');
 function ringBell() {
-    audio.src = 'krishna flute.mp3';
-
-audio.play();
+    audio.play();
 }
 
+reset.addEventListener('click',(e) => {
+  e.preventDefault();
+  date.value = "";
+  date.classList.remove('is-valid');
+  date.classList.remove('is-invalid');
+
+  audio.pause();
+  audio.currentTime = 0;
+})
+
 function setAlarm(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     alarmDate = new Date(date.value);
     console.log(`Setting Alarm for ${alarmDate}...`);
     now = new Date();
@@ -49,3 +60,4 @@ function setAlarm(e) {
         }, 1000);
     }
 }
+
