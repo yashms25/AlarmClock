@@ -19,11 +19,13 @@ date.addEventListener('input', ()=>{
 setalarm.addEventListener('click',setAlarm);
 var audio = new Audio('krishna flute.mp3');
 function ringBell() {
-    audio.play();
+    audio.src = 'krishna flute.mp3';
+
+audio.play();
 }
 
 function setAlarm(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     alarmDate = new Date(date.value);
     console.log(`Setting Alarm for ${alarmDate}...`);
     now = new Date();
